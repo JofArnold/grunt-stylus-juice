@@ -21,6 +21,7 @@
     "grunt-contrib-watch": "^0.6.1",
     "juice": "^0.4.0",
     "grunt-juice-email": "^0.1.1",
-    "grunt-contrib-stylus": "^0.18.0"
+    "grunt-contrib-stylus": "^0.18.0",
+    "grunt-contrib-htmlmin": "^0.3.0"
   }
 }

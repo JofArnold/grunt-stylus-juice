@@ -4,8 +4,7 @@ module.exports = (grunt) ->
   grunt.initConfig
    # juice task is our css inliner
     stylus:
-      files: ['emails/**/*.styl']
-      dynamic_mappings:
+      compile:
         files: [
           {
             expand: true
@@ -21,25 +20,40 @@ module.exports = (grunt) ->
       # from normal mapping in that you
       # can define a "src" path and everything
       # in ther can be reproduced in a "dest" path
-      dynamic_mappings:
+      compile:
+        tasks: ['htmlmin']
         files: [
           {
             expand: true
             cwd: 'emails/'
             src: ['**/*.html']
             # we are taking everything from
+            dest: 'tmp/'
+            ext: '.html'
+          }
+        ]
+    htmlmin:
+      compile:
+        options:
+          removeComments: true
+          collapseWhitespace: true
+        files: [
+          {
+            expand: true
+            cwd: 'tmp/'
+            src: ['**/*.html']
+            # we are taking everything from
             dest: 'build/'
             ext: '.html'
           }
         ]
-      # watch will be used to watch two different
-      # paths in our project
+
     watch:
       # every change you do to the source code of
       # the emails will be passed through the inliner
       build:
         files: ['emails/**/*.html', 'emails/**/*.styl']
-        tasks: ['stylus','juice']
+        tasks: ['stylus','juice','htmlmin']
       # as soon as the built files arrive to the
       # build directory, livereload will reload
       # the page in your browser
@@ -51,4 +65,5 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks('grunt-juice-email')
   grunt.loadNpmTasks('grunt-contrib-watch')
   grunt.loadNpmTasks('grunt-contrib-stylus')
+  grunt.loadNpmTasks('grunt-contrib-htmlmin')
 
