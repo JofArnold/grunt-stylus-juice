@@ -20,6 +20,9 @@ module.exports = (grunt) ->
       # from normal mapping in that you
       # can define a "src" path and everything
       # in ther can be reproduced in a "dest" path
+      options:
+        removeStyleTags: false
+        applyStyleTags: false
       compile:
         tasks: ['htmlmin']
         files: [
