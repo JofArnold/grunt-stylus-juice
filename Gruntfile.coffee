@@ -40,6 +40,7 @@ module.exports = (grunt) ->
         options:
           removeComments: true
           collapseWhitespace: true
+          minifyCSS: true
         files: [
           {
             expand: true
